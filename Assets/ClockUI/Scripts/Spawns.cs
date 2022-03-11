@@ -23,7 +23,7 @@ public class Spawns : MonoBehaviour
     void Update()
     {
         
-        if(Time.time > nextSpawn && enemNum < 1)
+        if(Time.time > nextSpawn && enemNum < 5)
         {
             nextSpawn = Time.time + spawnRate;
             randX = Random.Range(-25f, 25f);
