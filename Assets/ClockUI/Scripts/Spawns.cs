@@ -23,18 +23,7 @@ public class Spawns : MonoBehaviour
     void Update()
     {
         
-        if(Time.time > nextSpawn && enemNum < 1)
-        {
-            nextSpawn = Time.time + spawnRate;
-            randX = Random.Range(-25f, 25f);
-
-            
-
-            whereToSpawn = new Vector3(randX, 25, -1);
-            Instantiate(enemy, whereToSpawn, Quaternion.identity);
-            enemNum = enemNum + 1;
-            randTime = Random.Range(1, 12);
-        }
+        
 
     }
 }
