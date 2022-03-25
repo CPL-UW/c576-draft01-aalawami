@@ -1,5 +1,0 @@
-sceneSetups:
-- path: Assets/ClockUI/GameScene_ClockUI.unity
-  isLoaded: 1
-  isActive: 1
-  isSubScene: 0
