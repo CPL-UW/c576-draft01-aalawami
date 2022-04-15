@@ -4,7 +4,7 @@
     Thank you for downloading this package
     I hope you find it useful in your projects
     If you have any questions let me know
-    Cheers!
+    Cheers! .
 
                unitycodemonkey.com
     --------------------------------------------------
@@ -24,9 +24,13 @@ public class ClockUI : MonoBehaviour {
     public Text timeText;
     public float day;
     public float addHour = 0;
+    public float addMin = 0;
     public float prevHour = 0;
+    public float prevMin = 0;
     public float timeH = 0;
+    public float timeM = 0;
     public float tempTime = 0;
+    public float tempTimeM = 0;
 
     public float timeB = 1;
     public int points = 0;
@@ -59,6 +63,27 @@ public class ClockUI : MonoBehaviour {
     public void subTime()
     {
         addHour = addHour - 1;
+
+    }
+
+    public void addTenTime()
+    {
+        addMin = addMin + 10;
+    }
+
+    public void subTenTime()
+    {
+        addMin = addMin - 10;
+    }
+
+    public void addFiveTime()
+    {
+        addMin = addMin + 5;
+    }
+
+    public void subFiveTime()
+    {
+        addMin = addMin - 5;
     }
 
     public void timeBull()
@@ -98,8 +123,31 @@ public class ClockUI : MonoBehaviour {
 
         string hoursString = timeH.ToString("00");
 
+
+        if (prevMin == addMin)
+        {
+            clockMinuteHandTransform.eulerAngles = new Vector3(0, 0, -dayNormalized * rotationDegreesPerDay * hoursPerDay);
+        }
+        else
+        {
+            clockMinuteHandTransform.eulerAngles = new Vector3(0, 0, (-dayNormalized * rotationDegreesPerDay * hoursPerDay) - (6 * addMin));
+            
+        }
+
         float minutesPerHour = 60f;
-        string minutesString = Mathf.Floor(((dayNormalized * hoursPerDay) % 1f) * minutesPerHour).ToString("00");
+
+        timeM = Mathf.Floor((((dayNormalized * hoursPerDay) % 1f) * minutesPerHour) + addMin);
+
+
+        if (timeM < 0) { timeM = 60 + timeM; }
+        if (timeM > 60) { timeM = timeM - 60; }
+        if (timeM == tempTime || timeM == 60) { timeM = 60; }
+        if (addMin == 60 || addMin == -60) { addMin = 0; }
+
+
+
+        string minutesString = timeM.ToString("00");
+        //string minutesString = Mathf.Floor(((dayNormalized * hoursPerDay) % 1f) * minutesPerHour).ToString("00");
 
         timeText.text = hoursString + ":" + minutesString;
 
